@@ -1,4 +1,4 @@
-// Author: Breejesh Rathod
+// Author: Sagar Kamdar & Breejesh Rathod
 
 package GameLoop;
 
@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable {
     public static int width = 640;
     public static int height = 360;
     public static int scale = 1;
-    public static double FPS = 60.0;
+    public static double FPS = 120.0;
 
     private Thread thread;
     private JFrame frame;

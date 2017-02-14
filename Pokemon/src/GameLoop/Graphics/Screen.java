@@ -13,7 +13,6 @@ public class Screen {
     public int[] pixelsArena;
     BufferedImage imgMap;
     private int mapWidth, mapHeight;
-    Sprite grass16 = new Sprite(64, 0, 0, SpriteSheet.ground);
 
     public Screen(int width, int height) {
         this.width = width;

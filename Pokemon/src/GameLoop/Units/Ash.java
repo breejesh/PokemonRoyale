@@ -14,6 +14,7 @@ import GameLoop.Input.Keyboard;
  */
 public class Ash {
 
+    public final int SPRITE_SIZE = 64;
     public static SpriteSheet ashSheet = new SpriteSheet("graphics/red.png", 256);
     public int x, y;
     public boolean moving;
@@ -38,18 +39,18 @@ public class Ash {
         head = 1;
         moving = false;
         tick = 0;
-        ashStandDown = new Sprite(64, 0, 0, ashSheet);
-        ashMovingDownL = new Sprite(64, 1, 0, ashSheet);
-        ashMovingDownR = new Sprite(64, 3, 0, ashSheet);
-        ashStandLeft = new Sprite(64, 0, 1, ashSheet);
-        ashMovingLeftL = new Sprite(64, 1, 1, ashSheet);
-        ashMovingLeftR = new Sprite(64, 3, 1, ashSheet);
-        ashStandRight = new Sprite(64, 0, 2, ashSheet);
-        ashMovingRightL = new Sprite(64, 1, 2, ashSheet);
-        ashMovingRightR = new Sprite(64, 3, 2, ashSheet);
-        ashStandUp = new Sprite(64, 0, 3, ashSheet);
-        ashMovingUpL = new Sprite(64, 1, 3, ashSheet);
-        ashMovingUpR = new Sprite(64, 3, 3, ashSheet);
+        ashStandDown = new Sprite(SPRITE_SIZE, 0, 0, ashSheet);
+        ashMovingDownL = new Sprite(SPRITE_SIZE, 1, 0, ashSheet);
+        ashMovingDownR = new Sprite(SPRITE_SIZE, 3, 0, ashSheet);
+        ashStandLeft = new Sprite(SPRITE_SIZE, 0, 1, ashSheet);
+        ashMovingLeftL = new Sprite(SPRITE_SIZE, 1, 1, ashSheet);
+        ashMovingLeftR = new Sprite(SPRITE_SIZE, 3, 1, ashSheet);
+        ashStandRight = new Sprite(SPRITE_SIZE, 0, 2, ashSheet);
+        ashMovingRightL = new Sprite(SPRITE_SIZE, 1, 2, ashSheet);
+        ashMovingRightR = new Sprite(SPRITE_SIZE, 3, 2, ashSheet);
+        ashStandUp = new Sprite(SPRITE_SIZE, 0, 3, ashSheet);
+        ashMovingUpL = new Sprite(SPRITE_SIZE, 1, 3, ashSheet);
+        ashMovingUpR = new Sprite(SPRITE_SIZE, 3, 3, ashSheet);
     }
 
     public void update(Keyboard key) {
