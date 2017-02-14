@@ -27,7 +27,7 @@ public class Game extends Canvas implements Runnable {
     private Screen screen;
     private Keyboard key;
     private Mouse mouse;
-    private Level level;
+    private Level map;
     private Ash ash;
 
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
         frame = new JFrame();
         key = new Keyboard();
         mouse = new Mouse();
-        level = new Level();
+        map = new Level();
         ash = new Ash();
 
         addKeyListener(key);
