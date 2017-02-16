@@ -1,6 +1,8 @@
 package GameLoop.Units;
 
 import GameLoop.Game;
+import static GameLoop.Game.height;
+import static GameLoop.Game.width;
 import GameLoop.Graphics.Level;
 import GameLoop.Graphics.Screen;
 import GameLoop.Graphics.Sprite;
