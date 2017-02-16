@@ -2,37 +2,46 @@ package GameLoop.Graphics;
 
 import GameLoop.Game;
 import GameLoop.Graphics.Tile.Tile;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 public class Level {
 
-    public int tileWidth = 32;
-    public int tileHeight = 18;
-    public int[] mapTiles;
-    public SpriteSheet map;
+    public int mapHeight = 42;
+    public int mapWidth = 134;
+    public int[] dataMap;
 
     public Level() {
-        mapTiles = new int[tileWidth * tileHeight];
-        Random random = new Random();
+        dataMap = new int[mapWidth * mapHeight];
+        readMap();
+    }
 
-        for (int i = 0; i < tileWidth * tileHeight; ++i) {
-            mapTiles[i] = random.nextInt(2);
+    public void readMap() {
+        FileReader inputStream;
+        try {
+            inputStream = new FileReader("data/map.txt");
+
+            int c;
+            int i = 0;
+
+            while ((c = inputStream.read()) != -1) {
+                dataMap[i] = Character.getNumericValue(c);
+                System.out.print(Character.getNumericValue(c));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < mapHeight * mapWidth; ++i) {
+            if (i % mapWidth == 0) {
+                //System.out.println("");
+            }
+            //System.out.print(dataMap[i]);
         }
     }
 
     public void render(Screen screen, int x, int y) {
-        int startX = (x / Tile.TILE_SIZE);
-        int startY = (y / Tile.TILE_SIZE);
-        int endX = startX + (Game.width / Tile.TILE_SIZE);
-        int endY = startY + (Game.height / Tile.TILE_SIZE);
-        for (int currY = (y / Tile.TILE_SIZE); currY < endY; ++currY) {
-            for (int currX = (x / Tile.TILE_SIZE); currX < endX; ++currX) {
-                if (mapTiles[currX + currY * tileWidth] % 2 == 0) {
-                    Tile.grassTile.render(screen, (currX - startX) * Tile.TILE_SIZE, (currY - startY) * Tile.TILE_SIZE);
-                } else {
-                    Tile.sandTile.render(screen, (currX - startX) * Tile.TILE_SIZE, (currY - startY) * Tile.TILE_SIZE);
-                }
-            }
-        }
+        
     }
 }
