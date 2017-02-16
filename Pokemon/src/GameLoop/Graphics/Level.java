@@ -10,8 +10,8 @@ import java.util.Random;
 public class Level {
 
     private Red red;
-    public static int mapHeight = 42;
-    public static int mapWidth = 134;
+    public static int mapHeight = 50;
+    public static int mapWidth = 136;
     public static int[] dataMap;
 
     public Level(Red red) {

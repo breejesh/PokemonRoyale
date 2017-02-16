@@ -10,10 +10,10 @@ import GameLoop.Graphics.SpriteSheet;
 import GameLoop.Input.Keyboard;
 
 /*
-1: down
-2: left
-3: right
-4: up
+ 1: down
+ 2: left
+ 3: right
+ 4: up
  */
 public class Red {
 
@@ -60,6 +60,11 @@ public class Red {
 
     public void update(Keyboard key) {
         moving = false;
+        if (key.shift) {
+            moveSpeed = 6;
+        } else {
+            moveSpeed = 2;
+        }
         if (key.up) {
             if (!Level.collide(x / SPRITE_SIZE, (y - moveSpeed) / SPRITE_SIZE)) {
                 y -= moveSpeed;

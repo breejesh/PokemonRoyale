@@ -6,7 +6,7 @@ public class Keyboard implements KeyListener {
 
     private boolean[] keys = new boolean[120];
     private boolean[] flags = new boolean[120];
-    public boolean up, down, left, right,space;
+    public boolean up, down, left, right,space,shift;
 
     public Keyboard() {
         for (int i = 0; i < 120; i++) {
@@ -19,6 +19,7 @@ public class Keyboard implements KeyListener {
         left = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
         down = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
         right = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
+        shift = keys[KeyEvent.VK_SHIFT];
         space = keys[KeyEvent.VK_SPACE];
     }
 
