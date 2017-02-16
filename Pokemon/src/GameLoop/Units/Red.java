@@ -59,29 +59,29 @@ public class Red {
     public void update(Keyboard key) {
         moving = false;
         if (key.up) {
-            if (!Level.collide(x / SPRITE_SIZE, (y - moveSpeed)/ SPRITE_SIZE)) {
-                head = 4;
+            if (!Level.collide(x / SPRITE_SIZE, (y - moveSpeed) / SPRITE_SIZE)) {
                 y -= moveSpeed;
                 moving = true;
             }
+            head = 4;
         } else if (key.down) {
             if (!Level.collide(x / SPRITE_SIZE, (y + moveSpeed) / SPRITE_SIZE)) {
-                head = 1;
                 y += moveSpeed;
                 moving = true;
             }
+            head = 1;
         } else if (key.left) {
             if (!Level.collide((x - moveSpeed) / SPRITE_SIZE, y / SPRITE_SIZE)) {
-                head = 2;
                 x -= moveSpeed;
                 moving = true;
             }
+            head = 2;
         } else if (key.right) {
             if (!Level.collide((x + moveSpeed) / SPRITE_SIZE, y / SPRITE_SIZE)) {
-                head = 3;
                 x += moveSpeed;
                 moving = true;
             }
+            head = 3;
         }
         if (moving) {
             tick = (tick + 1) % 40;
