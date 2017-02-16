@@ -6,7 +6,7 @@ import GameLoop.Graphics.Level;
 import GameLoop.Graphics.Screen;
 import GameLoop.Input.Keyboard;
 import GameLoop.Input.Mouse;
-import GameLoop.Units.Ash;
+import GameLoop.Units.Red;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -30,7 +30,7 @@ public class Game extends Canvas implements Runnable {
     private Keyboard key;
     private Mouse mouse;
     private Level map;
-    private Ash ash;
+    private Red red;
 
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
@@ -43,8 +43,8 @@ public class Game extends Canvas implements Runnable {
         frame = new JFrame();
         key = new Keyboard();
         mouse = new Mouse();
-        map = new Level();
-        ash = new Ash();
+        map = new Level(red);
+        red = new Red();
 
         addKeyListener(key);
         //addMouseListener(mouse);
@@ -104,7 +104,7 @@ public class Game extends Canvas implements Runnable {
     public void update() {
         key.update();
         //mouse.update();
-        ash.update(key);
+        red.update(key);
         //System.out.println(posX + "   " + posY);
         //System.out.println(lastPress);
     }
@@ -116,9 +116,9 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
-        screen.renderArena(ash.x - (width / 2), ash.y - (height / 2));
+        screen.renderArena(red.x - (width / 2), red.y - (height / 2));
         //level.render(screen, ash.x - (width / 2), ash.y - (height / 2));
-        ash.render(screen);
+        red.render(screen);
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Graphics g = bs.getDrawGraphics();

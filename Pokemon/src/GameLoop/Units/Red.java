@@ -1,6 +1,7 @@
 package GameLoop.Units;
 
 import GameLoop.Game;
+import GameLoop.Graphics.Level;
 import GameLoop.Graphics.Screen;
 import GameLoop.Graphics.Sprite;
 import GameLoop.Graphics.SpriteSheet;
@@ -12,11 +13,12 @@ import GameLoop.Input.Keyboard;
 3: right
 4: up
  */
-public class Ash {
+public class Red {
 
-    public final int SPRITE_SIZE = 64;
-    public static SpriteSheet ashSheet = new SpriteSheet("graphics/red.png", 256);
+    public final int SPRITE_SIZE = 32;
+    public static SpriteSheet ashSheet = new SpriteSheet("graphics/red32.png", 128);
     public int x, y;
+    public int moveSpeed;
     public boolean moving;
     public int head;
     public int tick;
@@ -33,10 +35,11 @@ public class Ash {
     public Sprite ashMovingUpL;
     public Sprite ashMovingUpR;
 
-    public Ash() {
+    public Red() {
         x = 1024;
         y = 576;
         head = 1;
+        moveSpeed = 2;
         moving = false;
         tick = 0;
         ashStandDown = new Sprite(SPRITE_SIZE, 0, 0, ashSheet);
@@ -56,28 +59,36 @@ public class Ash {
     public void update(Keyboard key) {
         moving = false;
         if (key.up) {
-            head = 4;
-            y-=3;
-            moving = true;
+            if (!Level.collide(x / SPRITE_SIZE, (y - moveSpeed)/ SPRITE_SIZE)) {
+                head = 4;
+                y -= moveSpeed;
+                moving = true;
+            }
         } else if (key.down) {
-            head = 1;
-            y+=3;
-            moving = true;
-        }
-        else if (key.left) {
-            head = 2;
-            x-=3;
-            moving = true;
+            if (!Level.collide(x / SPRITE_SIZE, (y + moveSpeed) / SPRITE_SIZE)) {
+                head = 1;
+                y += moveSpeed;
+                moving = true;
+            }
+        } else if (key.left) {
+            if (!Level.collide((x - moveSpeed) / SPRITE_SIZE, y / SPRITE_SIZE)) {
+                head = 2;
+                x -= moveSpeed;
+                moving = true;
+            }
         } else if (key.right) {
-            head = 3;
-            x+=3;
-            moving = true;
+            if (!Level.collide((x + moveSpeed) / SPRITE_SIZE, y / SPRITE_SIZE)) {
+                head = 3;
+                x += moveSpeed;
+                moving = true;
+            }
         }
         if (moving) {
             tick = (tick + 1) % 40;
         } else {
             tick = 0;
         }
+        System.out.println("x: " + x + " | y: " + y);
     }
 
     public void renderSprite(Screen screen, Sprite sprite) {
