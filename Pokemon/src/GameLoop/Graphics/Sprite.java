@@ -1,6 +1,8 @@
 package GameLoop.Graphics;
 
-public class Sprite {
+import java.io.Serializable;
+
+public class Sprite implements Serializable {
 
     public final int SIZE;
     private int x, y;

@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable {
         key = new Keyboard();
         mouse = new Mouse();
         map = new Level(red);
-        red = new Red();
+        red = Red.deserializeRead();
 
         addKeyListener(key);
         //addMouseListener(mouse);
@@ -53,6 +53,7 @@ public class Game extends Canvas implements Runnable {
 
     public synchronized void start() {
         running = true;
+        System.out.println("x: " + red.x + " | y: " + red.y);
         thread = new Thread(this, "Display");
         thread.start();
     }
@@ -105,6 +106,7 @@ public class Game extends Canvas implements Runnable {
         key.update();
         //mouse.update();
         red.update(key);
+        red.serializeWrite();
         //System.out.println(posX + "   " + posY);
         //System.out.println(lastPress);
     }
