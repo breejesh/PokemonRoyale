@@ -7,7 +7,7 @@ public class Attack {
     String name;
     Type pokemonType;
     Type type;
-    int dmg;
+    int iniDmg;
     int currCount;
     int maxCount;
     
