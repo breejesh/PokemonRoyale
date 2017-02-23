@@ -36,6 +36,7 @@ public class SpriteSheet implements Serializable{
     public void load() {
         try {
             File file = new File(path);
+            System.out.println(path);
             BufferedImage image = ImageIO.read(file);
             int w = image.getWidth();
             int h = image.getHeight();
