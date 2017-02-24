@@ -1,13 +1,18 @@
 package GameLoop.Units;
 
 import GameLoop.Game;
-import static GameLoop.Game.height;
-import static GameLoop.Game.width;
 import GameLoop.Graphics.Level;
 import GameLoop.Graphics.Screen;
 import GameLoop.Graphics.Sprite;
 import GameLoop.Graphics.SpriteSheet;
 import GameLoop.Input.Keyboard;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.logging.Logger;
 
 /*
  1: down
@@ -15,7 +20,9 @@ import GameLoop.Input.Keyboard;
  3: right
  4: up
  */
-public class Red {
+public class Red implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     public final int SPRITE_SIZE = 32;
     public static SpriteSheet ashSheet = new SpriteSheet("graphics/red32.png", 128);
@@ -24,6 +31,7 @@ public class Red {
     public boolean moving;
     public int head;
     public int tick;
+    public Pokemon charizard;
     public Sprite ashStandDown;
     public Sprite ashMovingDownL;
     public Sprite ashMovingDownR;
@@ -44,6 +52,7 @@ public class Red {
         moveSpeed = 2;
         moving = false;
         tick = 0;
+        charizard = new Pokemon("charizard");
         ashStandDown = new Sprite(SPRITE_SIZE, 0, 0, ashSheet);
         ashMovingDownL = new Sprite(SPRITE_SIZE, 1, 0, ashSheet);
         ashMovingDownR = new Sprite(SPRITE_SIZE, 3, 0, ashSheet);
@@ -95,7 +104,7 @@ public class Red {
         } else {
             tick = 0;
         }
-        System.out.println("x: " + x + " | y: " + y);
+        //System.out.println("x: " + x + " | y: " + y);
     }
 
     public void renderSprite(Screen screen, Sprite sprite) {
@@ -111,6 +120,34 @@ public class Red {
             renderSprite(screen, spriteR);
         } else if (tick < 40) {
             renderSprite(screen, spriteS);
+        }
+    }
+    
+    public static Red deserializeRead() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/red.ser"));
+            return (Red) ois.readObject();
+        } catch (IOException | ClassNotFoundException ex) {
+            ObjectInputStream ois;
+            try {
+                ois = new ObjectInputStream(new FileInputStream("data/redBack.ser"));
+                return (Red) ois.readObject();
+            } catch (IOException | ClassNotFoundException ex1) {
+            }
+        }
+        System.out.println("New Game");
+        return new Red();
+    }
+
+    public void serializeWrite() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/red.ser"));
+            oos.writeObject(this);
+            oos = new ObjectOutputStream(new FileOutputStream("data/redBack.ser"));
+            oos.writeObject(this);
+            //System.out.println("Done Serializing");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -147,5 +184,6 @@ public class Red {
             default:
                 break;
         }
+        charizard.render(screen);
     }
 }

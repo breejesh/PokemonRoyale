@@ -3,11 +3,12 @@ package GameLoop.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class SpriteSheet {
+public class SpriteSheet implements Serializable{
 
     private String path;
     public final int SIZE_X;
@@ -35,6 +36,7 @@ public class SpriteSheet {
     public void load() {
         try {
             File file = new File(path);
+            System.out.println(path);
             BufferedImage image = ImageIO.read(file);
             int w = image.getWidth();
             int h = image.getHeight();
