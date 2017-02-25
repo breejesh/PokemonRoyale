@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class Sprite implements Serializable {
+    
+    private static final long serialVersionUID = 3L;
 
     public final int SIZE;
     private int x, y;

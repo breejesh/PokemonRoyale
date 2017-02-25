@@ -5,6 +5,8 @@ import GameLoop.Graphics.Sprite;
 import java.io.Serializable;
 
 public class Pokemon implements Serializable {
+    
+    private static final long serialVersionUID = 2L;
 
     enum Type {
         Grass, Fire, Electric, Water
