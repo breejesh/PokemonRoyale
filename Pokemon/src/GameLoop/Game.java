@@ -7,6 +7,7 @@ import GameLoop.Graphics.Screen;
 import GameLoop.Input.Keyboard;
 import GameLoop.Input.Mouse;
 import GameLoop.Units.Red;
+import Utilities.Attack;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -45,6 +46,7 @@ public class Game extends Canvas implements Runnable {
         mouse = new Mouse();
         map = new Level(red);
         red = Red.deserializeRead();
+        Attack.readAttacksJSON();
 
         addKeyListener(key);
         //addMouseListener(mouse);
