@@ -18,20 +18,20 @@ import org.json.simple.parser.ParseException;
 
 public class Pokemon implements Serializable {
 
-    private static final long serialVersionUID = 2L;
+    public static final long serialVersionUID = 2L;
 
     public static Map<String, Pokemon> pokemon = new HashMap<>();
 
     enum Type {
         Grass, Fire, Electric, Water, Normal
     }
-    private String name;
-    private int id;
-    private Type myType;
-    private Type weakness;
-    private int currHP, maxHP;
-    private int exp;
-    private int level;
+    public String name;
+    public int id;
+    public Type myType;
+    public Type weakness;
+    public int currHP, maxHP;
+    public int exp;
+    public int level;
     public Sprite select;
     public Sprite battle;
 
@@ -67,7 +67,7 @@ public class Pokemon implements Serializable {
                 Pokemon currPokemon = new Pokemon(
                         currEle.get("name").toString(), 
                         currEle.get("type").toString(), 
-                        currEle.get("id").toString(),
+                        currEle.get("ID").toString(),
                         currEle.get("weakness").toString(),
                         currEle.get("maxHP").toString());
                 Pokemon.pokemon.put(currPokemon.name, currPokemon);

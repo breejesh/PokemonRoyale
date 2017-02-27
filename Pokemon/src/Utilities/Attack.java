@@ -19,12 +19,12 @@ public class Attack {
     enum Type {
         Grass, Fire, Electric, Water, Normal
     }
-    private String name;
-    private Type pokemonType;
-    private Type type;
-    private int iniDmg;
-    private int currCount;
-    private int maxCount;
+    public String name;
+    public Type pokemonType;
+    public Type type;
+    public int iniDmg;
+    public int currCount;
+    public int maxCount;
     
     public Attack() {
         

@@ -18,6 +18,9 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
+    enum Tile{
+        
+    }
 
     public static int width = 640;
     public static int height = 360;
