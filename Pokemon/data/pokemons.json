@@ -1,0 +1,32 @@
+{
+"array": [
+  {
+    "name": "Charizard",
+    "type": "Fire",
+    "ID": "1",
+    "weakness": "Water",
+    "maxHP": "500"
+  },
+  {
+    "name": "Blastoise",
+    "type": "Water",
+    "ID": "2",
+    "weakness": "Grass",
+    "maxHP": "500"
+  },
+  {
+    "name": "Venusaur",
+    "type": "Grass",
+    "ID": "3",
+    "weakness": "Fire",
+    "maxHP": "500"
+  },
+  {
+    "name": "Dragonite",
+    "type": "Normal",
+    "ID": "4",
+    "weakness": "Electric",
+    "maxHP": "600"
+  }
+]
+}

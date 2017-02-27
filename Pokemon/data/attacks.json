@@ -1,0 +1,36 @@
+{
+"array": [
+  {
+    "name": "Tackle",
+    "pType": "Normal",
+    "type": "Normal",
+    "iniDmg": "40",
+    "currCount": "5",
+    "maxCount": "5"
+  },
+  {
+    "name": "Water Pulse",
+    "pType": "Water",
+    "type": "Water",
+    "iniDmg": "45",
+    "currCount": "5",
+    "maxCount": "5"
+  },
+  {
+    "name": "Flame Thrower",
+    "pType": "Fire",
+    "type": "Fire",
+    "iniDmg": "55",
+    "currCount": "5",
+    "maxCount": "5"
+  },
+  {
+    "name": "Razor Leaf",
+    "pType": "Grass",
+    "type": "Grass",
+    "iniDmg": "50",
+    "currCount": "5",
+    "maxCount": "5"
+  }
+]
+}

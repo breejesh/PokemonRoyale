@@ -6,6 +6,7 @@ import GameLoop.Graphics.Level;
 import GameLoop.Graphics.Screen;
 import GameLoop.Input.Keyboard;
 import GameLoop.Input.Mouse;
+import GameLoop.Units.Pokemon;
 import GameLoop.Units.Red;
 import Utilities.Attack;
 import java.awt.Canvas;
@@ -47,6 +48,7 @@ public class Game extends Canvas implements Runnable {
         map = new Level(red);
         red = Red.deserializeRead();
         Attack.readAttacksJSON();
+        Pokemon.readPokemonsJSON();
 
         addKeyListener(key);
         //addMouseListener(mouse);

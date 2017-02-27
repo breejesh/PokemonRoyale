@@ -19,12 +19,12 @@ public class Attack {
     enum Type {
         Grass, Fire, Electric, Water, Normal
     }
-    String name;
-    Type pokemonType;
-    Type type;
-    int iniDmg;
-    int currCount;
-    int maxCount;
+    private String name;
+    private Type pokemonType;
+    private Type type;
+    private int iniDmg;
+    private int currCount;
+    private int maxCount;
     
     public Attack() {
         
@@ -42,7 +42,7 @@ public class Attack {
     public static void readAttacksJSON() {
 
         try {
-            FileReader file = new FileReader("attacks.json");
+            FileReader file = new FileReader("data/attacks.json");
 
             JSONObject jsonObject = (JSONObject) new JSONParser().parse(file);
             JSONArray array = (JSONArray) jsonObject.get("array"); // it should be any array name
@@ -64,7 +64,6 @@ public class Attack {
         } catch (IOException | ParseException ex) {
             Logger.getLogger(Attack.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     public void printInfo() {
