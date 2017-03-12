@@ -1,5 +1,4 @@
 // Author: Sagar Kamdar & Breejesh Rathod
-
 package GameLoop;
 
 import GameLoop.Graphics.Level;
@@ -18,9 +17,6 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
-    enum Tile{
-        
-    }
 
     public static int width = 640;
     public static int height = 360;
@@ -37,6 +33,7 @@ public class Game extends Canvas implements Runnable {
     private Level map;
     private Red red;
 
+    private BufferStrategy bs;
     private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
@@ -48,8 +45,8 @@ public class Game extends Canvas implements Runnable {
         frame = new JFrame();
         key = new Keyboard();
         mouse = new Mouse();
-        map = new Level(red);
         red = Red.deserializeRead();
+        map = new Level();
         Attack.readAttacksJSON();
         Pokemon.readPokemonsJSON();
 
@@ -86,6 +83,12 @@ public class Game extends Canvas implements Runnable {
         int frames = 0;
         int updates = 0;
 
+        bs = getBufferStrategy();
+        if (bs == null) {
+            createBufferStrategy(2);
+            bs = getBufferStrategy();
+        }
+
         while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -119,15 +122,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void render() {
-        BufferStrategy bs = getBufferStrategy();
-        if (bs == null) {
-            createBufferStrategy(2);
-            return;
-        }
-
         screen.renderArena(red.x - (width / 2), red.y - (height / 2));
-        //level.render(screen, ash.x - (width / 2), ash.y - (height / 2));
         red.render(screen);
+        
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Graphics g = bs.getDrawGraphics();

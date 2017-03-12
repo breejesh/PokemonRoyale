@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 /*
  1: down
@@ -20,7 +19,7 @@ import java.util.logging.Logger;
  3: right
  4: up
  */
-public class Red implements Serializable{
+public class Red implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -101,6 +100,10 @@ public class Red implements Serializable{
         }
         if (moving) {
             tick = (tick + 1) % 40;
+            Level.updateCurrTile(x / SPRITE_SIZE, y / SPRITE_SIZE);
+            if (Level.spawnPokemon()){
+                System.out.println("A Wild Pokemon Appears");
+            }
         } else {
             tick = 0;
         }
@@ -122,7 +125,7 @@ public class Red implements Serializable{
             renderSprite(screen, spriteS);
         }
     }
-    
+
     public static Red deserializeRead() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/red.ser"));

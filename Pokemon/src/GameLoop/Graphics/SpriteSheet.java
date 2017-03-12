@@ -8,8 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class SpriteSheet implements Serializable{
-    
+public class SpriteSheet implements Serializable {
+
     private static final long serialVersionUID = 4L;
 
     private String path;

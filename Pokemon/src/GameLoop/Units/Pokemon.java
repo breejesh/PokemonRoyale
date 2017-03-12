@@ -22,7 +22,7 @@ public class Pokemon implements Serializable {
 
     public static Map<String, Pokemon> pokemon = new HashMap<>();
 
-    enum Type {
+    public enum Type {
         Grass, Fire, Electric, Water, Normal
     }
     public String name;
@@ -52,7 +52,7 @@ public class Pokemon implements Serializable {
         select = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/select.png", 96);
         battle = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/battle.png", 96);
     }
-    
+
     public static void readPokemonsJSON() {
 
         try {
@@ -63,10 +63,10 @@ public class Pokemon implements Serializable {
 
             Iterator<Object> iterator = array.iterator();
             while (iterator.hasNext()) {
-                JSONObject currEle = (JSONObject)new JSONParser().parse(iterator.next().toString());
+                JSONObject currEle = (JSONObject) new JSONParser().parse(iterator.next().toString());
                 Pokemon currPokemon = new Pokemon(
-                        currEle.get("name").toString(), 
-                        currEle.get("type").toString(), 
+                        currEle.get("name").toString(),
+                        currEle.get("type").toString(),
                         currEle.get("ID").toString(),
                         currEle.get("weakness").toString(),
                         currEle.get("maxHP").toString());

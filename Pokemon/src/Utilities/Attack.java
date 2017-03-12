@@ -13,10 +13,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class Attack {
-    
+
     public static Map<String, Attack> attacks = new HashMap<>();
-    
-    enum Type {
+
+    public enum Type {
         Grass, Fire, Electric, Water, Normal
     }
     public String name;
@@ -25,11 +25,11 @@ public class Attack {
     public int iniDmg;
     public int currCount;
     public int maxCount;
-    
+
     public Attack() {
-        
+
     }
-    
+
     public Attack(String name, String pType, String type, String iniDmg, String cCount, String maxCount) {
         this.name = name;
         this.pokemonType = Type.valueOf(pType);
@@ -38,7 +38,7 @@ public class Attack {
         this.currCount = Integer.valueOf(cCount);
         this.maxCount = Integer.valueOf(maxCount);
     }
-    
+
     public static void readAttacksJSON() {
 
         try {
@@ -49,10 +49,10 @@ public class Attack {
 
             Iterator<Object> iterator = array.iterator();
             while (iterator.hasNext()) {
-                JSONObject currEle = (JSONObject)new JSONParser().parse(iterator.next().toString());
+                JSONObject currEle = (JSONObject) new JSONParser().parse(iterator.next().toString());
                 Attack currAttack = new Attack(
-                        currEle.get("name").toString(), 
-                        currEle.get("pType").toString(), 
+                        currEle.get("name").toString(),
+                        currEle.get("pType").toString(),
                         currEle.get("type").toString(),
                         currEle.get("iniDmg").toString(),
                         currEle.get("currCount").toString(),
@@ -65,7 +65,7 @@ public class Attack {
             Logger.getLogger(Attack.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void printInfo() {
         System.out.println("Name: " + this.name);
         System.out.println("  Type: " + this.type.toString());
