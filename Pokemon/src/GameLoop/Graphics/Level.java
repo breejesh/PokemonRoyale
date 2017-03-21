@@ -1,8 +1,8 @@
 package GameLoop.Graphics;
 
-import GameLoop.Units.Red;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 /*
 1 - Land
