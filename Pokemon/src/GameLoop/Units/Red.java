@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /*
  1: down
@@ -65,7 +66,11 @@ public class Red implements Serializable {
         ashStandUp = new Sprite(SPRITE_SIZE, 0, 3, ashSheet);
         ashMovingUpL = new Sprite(SPRITE_SIZE, 1, 3, ashSheet);
         ashMovingUpR = new Sprite(SPRITE_SIZE, 3, 3, ashSheet);
-        myPokemons.put("Dragonite", new Pokemon("Dragonite"));
+        try {
+            myPokemons.put("Dragonite", (Pokemon) Pokemon.pokemon.get("Dragonite").clone());
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(Red.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
 
     public void update(Keyboard key) {
@@ -103,7 +108,7 @@ public class Red implements Serializable {
         if (moving) {
             tick = (tick + 1) % 40;
             Level.updateCurrTile(x / SPRITE_SIZE, y / SPRITE_SIZE);
-            if (Level.spawnPokemon()){
+            if (Level.spawnPokemon()) {
                 System.out.println("A Wild Pokemon Appears");
                 Game.state = Game.State.Fighting;
             }
@@ -191,12 +196,12 @@ public class Red implements Serializable {
                 break;
         }
     }
-    
-    public void renderPokemon(Screen screen){
+
+    public void renderPokemon(Screen screen) {
         renderThePokemon(screen, "Dragonite");
     }
-    
-    private void renderThePokemon(Screen screen, String pokName){
+
+    private void renderThePokemon(Screen screen, String pokName) {
         screen.renderSprite(myPokemons.get(pokName).battle, 100, 180);
     }
 }

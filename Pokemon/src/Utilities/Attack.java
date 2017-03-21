@@ -2,6 +2,7 @@ package Utilities;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,7 +13,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Attack {
+public class Attack implements Serializable {
+
+    public static final long serialVersionUID = 4L;
 
     public static Map<String, Attack> attacks = new HashMap<>();
 

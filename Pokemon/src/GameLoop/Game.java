@@ -64,7 +64,7 @@ public class Game extends Canvas implements Runnable {
 
     public synchronized void start() {
         running = true;
-        System.out.println("x: " + red.x + " | y: " + red.y);
+        //System.out.println("x: " + red.x + " | y: " + red.y);
         thread = new Thread(this, "Display");
         thread.start();
     }
@@ -148,6 +148,7 @@ public class Game extends Canvas implements Runnable {
     public void updateBattleArena() {
         key.update();
         cursor.update(key);
+        red.serializeWrite();
     }
 
     public void renderBattleArena() {

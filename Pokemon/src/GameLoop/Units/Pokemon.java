@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Pokemon implements Serializable {
+public class Pokemon implements Serializable, Cloneable {
 
     public static final long serialVersionUID = 2L;
 
@@ -37,8 +37,6 @@ public class Pokemon implements Serializable {
     public Map<String, Attack> myAttacks = new HashMap<>();
 
     public Pokemon(String name) {
-        Pokemon pokemon = Pokemon.pokemon.get(name);
-        this.battle = pokemon.battle;
     }
 
     public Pokemon(String name, String type, String id, String weakness, String maxHP) {
@@ -52,6 +50,11 @@ public class Pokemon implements Serializable {
         this.level = 1;
         select = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/select.png", 96);
         battle = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/battle.png", 96);
+    }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 
     public static void readPokemonsJSON() {
