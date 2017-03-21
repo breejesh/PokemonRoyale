@@ -8,6 +8,7 @@ import GameLoop.Input.Mouse;
 import GameLoop.Units.Pokemon;
 import GameLoop.Units.Red;
 import Utilities.Attack;
+import Utilities.Cursor;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -21,7 +22,7 @@ public class Game extends Canvas implements Runnable {
     public enum State {
         Moving, Fighting
     }
-    public static State state = State.Moving;
+    public static State state = State.Fighting;
     public static int width = 640;
     public static int height = 360;
     public static int scale = 1;
@@ -32,6 +33,7 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
 
     private Screen screen;
+    private Cursor cursor;
     private Keyboard key;
     private Mouse mouse;
     private Level map;
@@ -46,6 +48,7 @@ public class Game extends Canvas implements Runnable {
         setPreferredSize(size);
 
         screen = new Screen(width, height);
+        cursor = new Cursor(4);
         frame = new JFrame();
         key = new Keyboard();
         mouse = new Mouse();
@@ -98,11 +101,19 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             while (delta >= 1) {
-                update();
+                if (Game.state == State.Moving) {
+                    update();
+                } else if (Game.state == State.Fighting) {
+                    updateBattleArena();
+                }
                 updates++;
                 delta--;
             }
-            render();
+            if (Game.state == Game.State.Moving) {
+                render();
+            } else if (Game.state == Game.State.Fighting) {
+                renderBattleArena();
+            }
             frames++;
 
             if (System.currentTimeMillis() - timer > 1000) {
@@ -136,12 +147,14 @@ public class Game extends Canvas implements Runnable {
 
     public void updateBattleArena() {
         key.update();
-        
+        cursor.update(key);
     }
-    
+
     public void renderBattleArena() {
         screen.renderBattleArena();
-        
+        screen.renderBattleFrame();
+        cursor.render(screen);
+
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
         Graphics g = bs.getDrawGraphics();

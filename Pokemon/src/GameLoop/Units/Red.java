@@ -62,6 +62,7 @@ public class Red implements Serializable {
         ashStandUp = new Sprite(SPRITE_SIZE, 0, 3, ashSheet);
         ashMovingUpL = new Sprite(SPRITE_SIZE, 1, 3, ashSheet);
         ashMovingUpR = new Sprite(SPRITE_SIZE, 3, 3, ashSheet);
+        
     }
 
     public void update(Keyboard key) {
@@ -101,6 +102,7 @@ public class Red implements Serializable {
             Level.updateCurrTile(x / SPRITE_SIZE, y / SPRITE_SIZE);
             if (Level.spawnPokemon()){
                 System.out.println("A Wild Pokemon Appears");
+                Game.state = Game.State.Fighting;
             }
         } else {
             tick = 0;

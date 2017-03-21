@@ -70,6 +70,10 @@ public class Pokemon implements Serializable {
                         currEle.get("ID").toString(),
                         currEle.get("weakness").toString(),
                         currEle.get("maxHP").toString());
+                String attacksID[] = currEle.get("attacksID").toString().split(";");
+                for(String attackID: attacksID){
+                    
+                }
                 Pokemon.pokemon.put(currPokemon.name, currPokemon);
                 //AttackJSON.attacks.add(currAttack);
                 //System.out.println("If iterator have next element: " + currEle);

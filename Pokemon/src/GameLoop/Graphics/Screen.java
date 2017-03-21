@@ -67,11 +67,22 @@ public class Screen {
     }
 
     public void renderBattleArena() {
-        for (int yy = 0; yy < height; yy++) {
-            for (int xx = 0; xx < width; xx++) {
-                pixels[xx + yy * width] = pixelsArena[xx + yy * mapWidth];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                pixels[x + y * width] = pixelsBattleArena[x + y * width];
             }
         }
+    }
+
+    public void renderBattleFrame() {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if ((pixelsBattleFrame[x + y * width] & 0xff000000) != 0) {
+                    pixels[x + y * width] = pixelsBattleFrame[x + y * width];
+                }
+            }
+        }
+        
     }
 
     public void renderSprite(Sprite sprite, int x, int y) {

@@ -5,7 +5,8 @@
     "type": "Fire",
     "ID": "1",
     "weakness": "Water",
-    "maxHP": "500"
+    "maxHP": "500",
+    "attacks": "Flame Thrower;Tackle;"
   },
   {
     "name": "Blastoise",
