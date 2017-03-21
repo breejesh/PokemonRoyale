@@ -1,11 +1,8 @@
 package GameLoop.Graphics;
 
-import GameLoop.Game;
-import GameLoop.Graphics.Tile.Tile;
 import GameLoop.Units.Red;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Random;
 
 public class Level {
 
