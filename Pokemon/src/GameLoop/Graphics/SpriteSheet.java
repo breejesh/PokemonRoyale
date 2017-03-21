@@ -8,7 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class SpriteSheet implements Serializable{
+public class SpriteSheet implements Serializable {
+
+    private static final long serialVersionUID = 4L;
 
     private String path;
     public final int SIZE_X;
@@ -36,7 +38,7 @@ public class SpriteSheet implements Serializable{
     public void load() {
         try {
             File file = new File(path);
-            System.out.println(path);
+            //System.out.println(path);
             BufferedImage image = ImageIO.read(file);
             int w = image.getWidth();
             int h = image.getHeight();
