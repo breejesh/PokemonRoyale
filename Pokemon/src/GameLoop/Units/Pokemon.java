@@ -48,8 +48,8 @@ public class Pokemon implements Serializable, Cloneable {
         this.currHP = this.maxHP;
         this.exp = 0;
         this.level = 1;
-        select = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/select.png", 96);
-        battle = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/battle.png", 96);
+        select = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/select.png", 192);
+        battle = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/battle.png", 192);
     }
     
     @Override

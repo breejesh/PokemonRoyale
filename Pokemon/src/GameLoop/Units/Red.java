@@ -202,6 +202,6 @@ public class Red implements Serializable {
     }
 
     private void renderThePokemon(Screen screen, String pokName) {
-        screen.renderSprite(myPokemons.get(pokName).battle, 100, 180);
+        screen.renderSprite(myPokemons.get(pokName).battle, 100, 140);
     }
 }
