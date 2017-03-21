@@ -52,10 +52,10 @@ public class Game extends Canvas implements Runnable {
         frame = new JFrame();
         key = new Keyboard();
         mouse = new Mouse();
-        red = Red.deserializeRead();
         map = new Level();
         Attack.readAttacksJSON();
         Pokemon.readPokemonsJSON();
+        red = Red.deserializeRead();
 
         addKeyListener(key);
         //addMouseListener(mouse);
@@ -152,6 +152,7 @@ public class Game extends Canvas implements Runnable {
 
     public void renderBattleArena() {
         screen.renderBattleArena();
+        red.renderPokemon(screen);
         screen.renderBattleFrame();
         cursor.render(screen);
 

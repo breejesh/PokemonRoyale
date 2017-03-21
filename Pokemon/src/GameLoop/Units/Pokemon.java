@@ -34,10 +34,11 @@ public class Pokemon implements Serializable {
     public int level;
     public Sprite select;
     public Sprite battle;
+    public Map<String, Attack> myAttacks = new HashMap<>();
 
     public Pokemon(String name) {
-        select = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/select.png", 96);
-        battle = new Sprite("graphics/Pokemons/" + name.toLowerCase() + "/battle.png", 96);
+        Pokemon pokemon = Pokemon.pokemon.get(name);
+        this.battle = pokemon.battle;
     }
 
     public Pokemon(String name, String type, String id, String weakness, String maxHP) {
@@ -70,9 +71,9 @@ public class Pokemon implements Serializable {
                         currEle.get("ID").toString(),
                         currEle.get("weakness").toString(),
                         currEle.get("maxHP").toString());
-                String attacksID[] = currEle.get("attacksID").toString().split(";");
-                for(String attackID: attacksID){
-                    
+                String attacks[] = currEle.get("attacks").toString().split(";");
+                for (String attackName : attacks) {
+                    currPokemon.myAttacks.put(attackName, Attack.attacks.get(attackName));
                 }
                 Pokemon.pokemon.put(currPokemon.name, currPokemon);
                 //AttackJSON.attacks.add(currAttack);

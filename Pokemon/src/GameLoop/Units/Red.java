@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  1: down
@@ -42,6 +44,7 @@ public class Red implements Serializable {
     public Sprite ashStandUp;
     public Sprite ashMovingUpL;
     public Sprite ashMovingUpR;
+    public Map<String, Pokemon> myPokemons = new HashMap<>();
 
     public Red() {
         x = 1024;
@@ -62,7 +65,7 @@ public class Red implements Serializable {
         ashStandUp = new Sprite(SPRITE_SIZE, 0, 3, ashSheet);
         ashMovingUpL = new Sprite(SPRITE_SIZE, 1, 3, ashSheet);
         ashMovingUpR = new Sprite(SPRITE_SIZE, 3, 3, ashSheet);
-        
+        myPokemons.put("Dragonite", new Pokemon("Dragonite"));
     }
 
     public void update(Keyboard key) {
@@ -187,5 +190,13 @@ public class Red implements Serializable {
             default:
                 break;
         }
+    }
+    
+    public void renderPokemon(Screen screen){
+        renderThePokemon(screen, "Dragonite");
+    }
+    
+    private void renderThePokemon(Screen screen, String pokName){
+        screen.renderSprite(myPokemons.get(pokName).battle, 100, 180);
     }
 }

@@ -13,21 +13,24 @@
     "type": "Water",
     "ID": "2",
     "weakness": "Grass",
-    "maxHP": "500"
+    "maxHP": "500",
+    "attacks": "Water Pulse;Tackle;"
   },
   {
     "name": "Venusaur",
     "type": "Grass",
     "ID": "3",
     "weakness": "Fire",
-    "maxHP": "500"
+    "maxHP": "500",
+    "attacks": "Razor Leaf;Tackle;"
   },
   {
     "name": "Dragonite",
     "type": "Normal",
     "ID": "4",
     "weakness": "Electric",
-    "maxHP": "600"
+    "maxHP": "600",
+    "attacks": "Flame Thrower;Tackle;"
   }
 ]
 }
