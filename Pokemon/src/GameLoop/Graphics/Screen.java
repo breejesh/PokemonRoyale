@@ -12,6 +12,7 @@ public class Screen {
     public int[] pixels;
     public int[] pixelsArena;
     public int[] pixelsBattleArena;
+    public int[] pixelsBattleFrame;
     BufferedImage imgMap;
     private int mapWidth, mapHeight;
 
@@ -20,56 +21,39 @@ public class Screen {
         this.height = height;
         pixels = new int[width * height];
 
-        File file = new File("graphics/map1.png");
-        try {
-            imgMap = ImageIO.read(file);
-        } catch (IOException ex) {
-            Logger.getLogger(Screen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
-        mapWidth = imgMap.getWidth();
-        mapHeight = imgMap.getHeight();
-        pixelsArena = new int[mapWidth * mapHeight];
+        loadBG("graphics/Battle/bg.png", 1);
+        loadBG("graphics/Battle/frame.png", 2);
 
-        for (int y = 0; y < imgMap.getHeight(); y++) {
-            for (int x = 0; x < imgMap.getWidth(); x++) {
-                pixelsArena[x + y * imgMap.getWidth()] = imgMap.getRGB(x, y);
-            }
-        }
-        
-        file = new File("graphics/Battle/bg.png");
-        try {
-            imgMap = ImageIO.read(file);
-        } catch (IOException ex) {
-            Logger.getLogger(Screen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        
-        mapWidth = imgMap.getWidth();
-        mapHeight = imgMap.getHeight();
-        pixelsBattleArena = new int[mapWidth * mapHeight];
-
-        for (int y = 0; y < imgMap.getHeight(); y++) {
-            for (int x = 0; x < imgMap.getWidth(); x++) {
-                pixelsBattleArena[x + y * imgMap.getWidth()] = imgMap.getRGB(x, y);
-            }
-        }
+        loadBG("graphics/map1.png", 0);
     }
-    
-    public void loadBG(String path){
+
+    public void loadBG(String path, int arenaNo) {
         File file = new File(path);
         try {
             imgMap = ImageIO.read(file);
         } catch (IOException ex) {
             Logger.getLogger(Screen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
         mapWidth = imgMap.getWidth();
         mapHeight = imgMap.getHeight();
-        pixelsArena = new int[mapWidth * mapHeight];
+        if (arenaNo == 0) {
+            pixelsArena = new int[mapWidth * mapHeight];
+        } else if (arenaNo == 1) {
+            pixelsBattleArena = new int[mapWidth * mapHeight];
+        } else if (arenaNo == 2) {
+            pixelsBattleFrame = new int[mapWidth * mapHeight];
+        }
 
         for (int y = 0; y < imgMap.getHeight(); y++) {
             for (int x = 0; x < imgMap.getWidth(); x++) {
-                pixelsArena[x + y * imgMap.getWidth()] = imgMap.getRGB(x, y);
+                if (arenaNo == 0) {
+                    pixelsArena[x + y * mapWidth] = imgMap.getRGB(x, y);
+                } else if (arenaNo == 1) {
+                    pixelsBattleArena[x + y * mapWidth] = imgMap.getRGB(x, y);
+                } else if (arenaNo == 2) {
+                    pixelsBattleFrame[x + y * mapWidth] = imgMap.getRGB(x, y);
+                }
             }
         }
     }
@@ -81,6 +65,7 @@ public class Screen {
             }
         }
     }
+
     public void renderBattleArena() {
         for (int yy = 0; yy < height; yy++) {
             for (int xx = 0; xx < width; xx++) {

@@ -30,7 +30,6 @@ public class Red implements Serializable {
     public boolean moving;
     public int head;
     public int tick;
-    public Pokemon charizard;
     public Sprite ashStandDown;
     public Sprite ashMovingDownL;
     public Sprite ashMovingDownR;
@@ -51,7 +50,6 @@ public class Red implements Serializable {
         moveSpeed = 2;
         moving = false;
         tick = 0;
-        charizard = new Pokemon("charizard");
         ashStandDown = new Sprite(SPRITE_SIZE, 0, 0, ashSheet);
         ashMovingDownL = new Sprite(SPRITE_SIZE, 1, 0, ashSheet);
         ashMovingDownR = new Sprite(SPRITE_SIZE, 3, 0, ashSheet);
@@ -187,6 +185,5 @@ public class Red implements Serializable {
             default:
                 break;
         }
-        charizard.render(screen);
     }
 }
