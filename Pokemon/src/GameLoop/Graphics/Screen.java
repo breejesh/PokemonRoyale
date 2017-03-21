@@ -11,6 +11,7 @@ public class Screen {
     private int width, height;
     public int[] pixels;
     public int[] pixelsArena;
+    public int[] pixelsBattleArena;
     BufferedImage imgMap;
     private int mapWidth, mapHeight;
 
@@ -28,7 +29,42 @@ public class Screen {
         
         mapWidth = imgMap.getWidth();
         mapHeight = imgMap.getHeight();
-        //System.out.println("Map Width: " + mapWidth + "Map Height: " + mapHeight);
+        pixelsArena = new int[mapWidth * mapHeight];
+
+        for (int y = 0; y < imgMap.getHeight(); y++) {
+            for (int x = 0; x < imgMap.getWidth(); x++) {
+                pixelsArena[x + y * imgMap.getWidth()] = imgMap.getRGB(x, y);
+            }
+        }
+        
+        file = new File("graphics/Battle/bg.png");
+        try {
+            imgMap = ImageIO.read(file);
+        } catch (IOException ex) {
+            Logger.getLogger(Screen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        mapWidth = imgMap.getWidth();
+        mapHeight = imgMap.getHeight();
+        pixelsBattleArena = new int[mapWidth * mapHeight];
+
+        for (int y = 0; y < imgMap.getHeight(); y++) {
+            for (int x = 0; x < imgMap.getWidth(); x++) {
+                pixelsBattleArena[x + y * imgMap.getWidth()] = imgMap.getRGB(x, y);
+            }
+        }
+    }
+    
+    public void loadBG(String path){
+        File file = new File(path);
+        try {
+            imgMap = ImageIO.read(file);
+        } catch (IOException ex) {
+            Logger.getLogger(Screen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
+        mapWidth = imgMap.getWidth();
+        mapHeight = imgMap.getHeight();
         pixelsArena = new int[mapWidth * mapHeight];
 
         for (int y = 0; y < imgMap.getHeight(); y++) {
@@ -44,17 +80,13 @@ public class Screen {
                 pixels[xx + yy * width] = pixelsArena[(xx + x) + (yy + y) * mapWidth];
             }
         }
-        /*for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                if ((x/8 + y/8) % 2 == 0) {
-                    pixels[x + y * width] = 0xff0000;
-                }
-                else
-                {
-                    pixels[x + y * width] = 0x000000;
-                }
+    }
+    public void renderBattleArena() {
+        for (int yy = 0; yy < height; yy++) {
+            for (int xx = 0; xx < width; xx++) {
+                pixels[xx + yy * width] = pixelsArena[xx + yy * mapWidth];
             }
-        }*/
+        }
     }
 
     public void renderSprite(Sprite sprite, int x, int y) {

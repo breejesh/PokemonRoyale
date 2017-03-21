@@ -18,6 +18,10 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
 
+    public enum State {
+        Moving, Fighting
+    }
+    public static State state = State.Moving;
     public static int width = 640;
     public static int height = 360;
     public static int scale = 1;
@@ -114,16 +118,29 @@ public class Game extends Canvas implements Runnable {
 
     public void update() {
         key.update();
-        //mouse.update();
         red.update(key);
         red.serializeWrite();
-        //System.out.println(posX + "   " + posY);
-        //System.out.println(lastPress);
     }
 
     public void render() {
         screen.renderArena(red.x - (width / 2), red.y - (height / 2));
         red.render(screen);
+
+        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
+
+        Graphics g = bs.getDrawGraphics();
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        g.dispose();
+        bs.show();
+    }
+
+    public void updateBattleArena() {
+        key.update();
+        
+    }
+    
+    public void renderBattleArena() {
+        screen.renderBattleArena();
         
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length);
 
